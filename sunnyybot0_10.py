@@ -19,7 +19,7 @@ pipeline = transformers.pipeline(
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 print(device)
 
-TOKEN: Final = '7383969203:AAFtDgt-YhqPkaUWWh0RgFPtKSvbLtnA1js'
+TOKEN: Final = #secret#
 BOT_USERNAME: Final = 'Sunnyy1_bot'
 
 async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
