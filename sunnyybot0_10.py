@@ -1,8 +1,6 @@
 from typing import Final
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler,filters,ContextTypes
-#import asyncio
-#import nest_asyncio
 import torch
 
 
@@ -36,7 +34,6 @@ async def custom_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 system_message = {"role": "system", "content": "You are a friendly chatbot that wants to help"}
 
 def create_message(input_text):
-    # Create the messages list dynamically
     messages = [
         system_message,  # Initial system message
         {"role": "user", "content": input_text}  # User input
@@ -46,13 +43,6 @@ def create_message(input_text):
 
 def handle_response(text: str) -> str:
     try:
-        #input_ids = tokenizer(text, return_tensors="pt").input_ids.to("cuda")
-        #outputs = model.generate(input_ids)
-        #return tokenizer.decode(outputs[0])
-        #messages = [
-        #    {"role": "system", "content": "You are a medieval knight and must provide explanations to modern people."},
-        #    {"role": "user", "content": "How should I explain the Internet?"},
-        #]
         messages = create_message(text)
         outputs = pipeline(messages, max_new_tokens=128)
         return(outputs[0]["generated_text"][-1])
